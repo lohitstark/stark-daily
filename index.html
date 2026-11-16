@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="A simple personal hydration and daily reminder dashboard.">
+  <title>STARK DAILY</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="STARK DAILY home">
+        <span class="brand-mark">S</span>
+        <span>STARK <span class="muted-brand">DAILY</span></span>
+      </a>
+      <span class="date-label" id="today-label"></span>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">YOUR DAILY ROUTINE, IN CONTROL</p>
+      <h1>Small habits.<br><span>Consistent progress.</span></h1>
+      <p class="intro-copy">A simple place to stay on track, one reminder at a time.</p>
+    </section>
+
+    <section class="water-card" aria-labelledby="water-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">TODAY'S HYDRATION</p>
+          <h2 id="water-heading">Water tracker</h2>
+        </div>
+        <span class="status-pill" id="water-status">In progress</span>
+      </div>
+
+      <div class="water-summary">
+        <div>
+          <div class="amount"><span id="consumed">0</span><small> ml</small></div>
+          <p class="subtle">consumed today</p>
+        </div>
+        <div class="goal-block">
+          <div class="goal-amount" id="goal-label">2500 ml</div>
+          <p class="subtle">daily target</p>
+        </div>
+      </div>
+
+      <div class="progress-track" role="progressbar" aria-label="Daily water progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-meta"><span id="progress-percent">0% complete</span><span id="remaining">2500 ml to go</span></div>
+
+      <div class="quick-actions">
+        <button class="primary-button" id="add-water" type="button">＋ Add 250 ml</button>
+        <button class="secondary-button" id="custom-water" type="button">Custom amount</button>
+      </div>
+      <p class="feedback" id="water-feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="lower-grid">
+      <section class="panel" aria-labelledby="reminder-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">STAY CONSISTENT</p>
+            <h2 id="reminder-heading">Water reminders</h2>
+          </div>
+          <span class="toggle-state" id="reminder-state">Off</span>
+        </div>
+        <p class="panel-copy">Get a gentle nudge while this app is open. Allow notifications to see alerts.</p>
+        <div class="settings-row">
+          <label for="interval">Remind me every</label>
+          <select id="interval">
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60" selected>60 minutes</option>
+            <option value="90">90 minutes</option>
+            <option value="120">2 hours</option>
+          </select>
+        </div>
+        <div class="settings-row">
+          <label for="start-time">Start time</label>
+          <input id="start-time" type="time" value="06:00">
+        </div>
+        <div class="settings-row">
+          <label for="end-time">End time</label>
+          <input id="end-time" type="time" value="21:00">
+        </div>
+        <div class="button-row">
+          <button class="primary-button" id="enable-reminders" type="button">Enable reminders</button>
+          <button class="secondary-button" id="disable-reminders" type="button">Pause</button>
+        </div>
+        <p class="note">Note: browser reminders work while the app remains open and active. They are not guaranteed if the browser is closed, the phone restarts, or the system stops the browser.</p>
+        <p class="feedback" id="reminder-feedback" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="settings-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">MAKE IT YOURS</p>
+            <h2 id="settings-heading">Daily settings</h2>
+          </div>
+        </div>
+        <div class="settings-row">
+          <label for="daily-goal">Daily water target</label>
+          <div class="input-with-unit"><input id="daily-goal" type="number" min="250" max="10000" step="250" value="2500"><span>ml</span></div>
+        </div>
+        <div class="settings-row">
+          <label for="glass-size">Quick-add amount</label>
+          <div class="input-with-unit"><input id="glass-size" type="number" min="50" max="2000" step="50" value="250"><span>ml</span></div>
+        </div>
+        <button class="secondary-button full-width" id="save-settings" type="button">Save settings</button>
+        <div class="today-log">
+          <div class="log-heading"><strong>Today's entries</strong><span id="entry-count">0 entries</span></div>
+          <ul id="water-log" class="water-log"><li class="empty-log">No water logged yet.</li></ul>
+        </div>
+      </section>
+    </section>
+
+    <footer>
+      <span>STARK DAILY</span>
+      <span>Your progress stays on this device.</span>
+    </footer>
+  </main>
+  <script src="./app.js" defer></script>
+</body>
+</html>
